@@ -1,0 +1,5 @@
+POST  http://localhost:3003/user/editprofile
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXVuYXNoZSIsIl9pZCI6IjY1MGI1YzVlNWVlMzVlNmY4YjMxN2JjMCIsImlhdCI6MTY5NTQyNjQ0MiwiZXhwIjoxNjk4MDE4NDQyfQ.l9khWXFeFPvb3B7qqKQWf38xqKovl5iHluDJfxe_D4U
+
+
