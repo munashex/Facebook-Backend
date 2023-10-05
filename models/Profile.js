@@ -2,11 +2,15 @@ import mongoose from 'mongoose'
 
 const ProfileSchema = new mongoose.Schema({
     image: String, 
-    public_id: String, 
-    bio: String, 
+    public_id: String,
     user: {
         type: mongoose.Schema.Types.ObjectId, ref: "User"
-    }
+    },
+    name: {
+        type: mongoose.Schema.Types.String, ref: "user"
+    },
+    followers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
+    following: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}] 
 })  
 
 const Profile = mongoose.model('Profile', ProfileSchema) 

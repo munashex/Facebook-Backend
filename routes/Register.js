@@ -43,7 +43,7 @@ register.post('/signin', async(req, res) => {
         return res.status(400).json({message: 'user not found'})
     }
 
-    res.status(200).json({token: generateToken(user)})
+    res.status(200).json({token: generateToken(user), user: user._id})
     
     }catch(err) {
      console.log(err)

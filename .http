@@ -1,5 +1,3 @@
-POST  http://localhost:3003/user/editprofile
-Content-Type: application/json 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXVuYXNoZSIsIl9pZCI6IjY1MGI1YzVlNWVlMzVlNmY4YjMxN2JjMCIsImlhdCI6MTY5NTQyNjQ0MiwiZXhwIjoxNjk4MDE4NDQyfQ.l9khWXFeFPvb3B7qqKQWf38xqKovl5iHluDJfxe_D4U
-
-
+POST http://localhost:3003/user/unfollow/651f25807edcbe88aab86245 
+Content-Type: "application/json" 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYXNobGV5IiwiX2lkIjoiNjUxZjI1ODA3ZWRjYmU4OGFhYjg2MjQ1IiwiaWF0IjoxNjk2NTQwMDQzLCJleHAiOjE2OTkxMzIwNDN9.8xVyWnMoH4Hh4bYK_aOOnEAX5ZUEYSZVDPATTMU5S7I
