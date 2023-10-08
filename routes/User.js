@@ -112,34 +112,80 @@ user.get('/:id', async(req, res) => {
   }
 })
 
+
 user.post('/follow/:id', isAuth, async(req, res) => {
-const {id} = req.params 
-const userToFollow = await Profile.findOne({user: id}) 
-const currentUser = await Profile.findOne({user: req.user._id}) 
+ 
+  const {id} = req.params 
 
-if(!userToFollow) {
-  return res.status(400).json({message: "user not found"})
-}
+  const userToFollow = await User.findById(id)  
+  const currentUser = await User.findById(req.user._id)
+ 
 
-if(!currentUser) {
-  return res.status(400).json({message: "user not found"})
-}
+  if(!userToFollow || !currentUser) {
+    return res.status(400).json({message: 'user not found'})
+  }
 
-if(currentUser.following.includes(userToFollow.user)) {
-  res.status(400).json({message: "you follow this user"}) 
-  return
-}
+  if(userToFollow.followers.includes(req.user._id)) {
+    return res.status(400).json({message: 'you follow this user'})
+  }
 
+   userToFollow.followers.push(req.user._id) 
+   currentUser.following.push(userToFollow._id)
+   await userToFollow.save() 
+   await currentUser.save() 
+   res.status(200).json({user: currentUser})
+})
 
-userToFollow.followers.push(req.params.id) 
-currentUser.following.push(userToFollow.user) 
+user.post('/unfollow/:id', isAuth, async(req, res) => {
+ 
+  const {id} = req.params 
 
-await userToFollow.save() 
-await currentUser.save() 
-res.status(200).json(currentUser)
+  const userToFollow = await User.findById(id)  
+  const currentUser = await User.findById(req.user._id)
+ 
+
+  if(!userToFollow || !currentUser) {
+    return res.status(400).json({message: 'user not found'})
+  }
+
+  if(!userToFollow.followers.includes(req.user._id)) {
+    return res.status(400).json({message: 'you do not follow this user'})
+  }
+
+   userToFollow.followers.pull(req.user._id) 
+   currentUser.following.pull(userToFollow._id)
+   await userToFollow.save() 
+   await currentUser.save() 
+   res.status(200).json({user: currentUser})
 })
 
 
+user.get('/singleUser/:id', async(req, res) => {
+  const user = await User.findById(req.params.id)   
+
+  if(!user) {
+    return res.status(400).json({message: 'user not found'})
+  }
   
+  res.status(200).json(user)
+}) 
+
+user.get('/followers/:id', async(req, res) => {
+  const {id} = req.params
+  const user = await User.findById(id)  
+  const  followers = await Profile.find({user: user.followers})
+
+  res.status(200).json({followers: followers})
+})
+
+user.get('/following/:id', async(req, res) => {
+  const {id} = req.params
+  const user = await User.findById(id)  
+  const  following = await Profile.find({user: user.following})
+
+  res.status(200).json({following: following})
+})
+
+
 
 export default user

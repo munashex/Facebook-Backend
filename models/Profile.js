@@ -8,9 +8,7 @@ const ProfileSchema = new mongoose.Schema({
     },
     name: {
         type: mongoose.Schema.Types.String, ref: "user"
-    },
-    followers: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}],
-    following: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}] 
+    }
 })  
 
 const Profile = mongoose.model('Profile', ProfileSchema) 
