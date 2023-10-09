@@ -36,9 +36,9 @@ user.post('/profile', isAuth, upload.single("image"), async(req, res) => {
 
     const profile = new Profile({
       image: results.secure_url,
-      public_id: results.public_id, 
+      public_id: results.public_id,  
+      name: req.user.name,
       user: req.user._id, 
-      name: req.user.name
     })
 
    const savedImage = await profile.save() 
