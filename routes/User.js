@@ -80,10 +80,10 @@ user.post('/editprofile', upload.single('image'), isAuth,  async(req, res) => {
   })
 
   const profilePic = new Profile({
-    bio, 
     image: results.secure_url, 
     public_id: results.public_id, 
-    user: req.user._id
+    user: req.user._id, 
+    name: req.user.name
   })
 
 const savedProfile = await profilePic.save() 
