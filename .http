@@ -1,4 +1,4 @@
-GET http://localhost:3003/user/followers
+GET http://localhost:3003/user/search/m
 Content-Type: "application/json" 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXVuYXNoZSIsIl9pZCI6IjY1MWZmNGZiZWJjNGJjOTdjMmQ2ODQyNyIsImlhdCI6MTY5Njc3ODM0MiwiZXhwIjoxNjk5MzcwMzQyfQ.SBSZNe_2LoQr1sFFajfx8o0cRGWWQ5BkMJNhEpsDLv8
+
 

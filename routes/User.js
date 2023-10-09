@@ -186,6 +186,23 @@ user.get('/following/:id', async(req, res) => {
   res.status(200).json({following: following})
 })
 
+user.get('/search/:name', async(req, res) => {
+  try {
+  const {name} = req.params 
+  
+  const user = await Profile.findOne({name: name}) 
+
+  
+  if(!user){
+    res.status(400).json({message: "User not found"}) 
+    return 
+  } 
+
+  res.status(200).json({user: user})
+  }catch(err) { 
+    console.log(err)
+  }
+})
 
 
 export default user
